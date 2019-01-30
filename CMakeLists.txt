@@ -8,6 +8,7 @@ project(Compressonator)
 	"Compressonator/Source/Codec/*.cpp" 
 	"Compressonator/Source/Codec/*.c" 
 	"Compressonator/Source/Codec/*.cxx"  
+	"Compressonator/Source/common/HDR_Encode.cpp"
 	 )
 	
 	file(GLOB_RECURSE CMP_HEADERS1 "Compressonator/Header/*.h")
@@ -15,7 +16,7 @@ project(Compressonator)
 
 	if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
     list(APPEND CMP_HEADERS1 ${CMP_HEADERS1} "${CMAKE_CURRENT_SOURCE_DIR}/Common/Lib/Ext/OpenEXR/ilmbase-2.2.0/Half/half.h")
-    list(APPEND CMP_SOURCES1 ${CMP_SOURCES1} "${CMAKE_CURRENT_SOURCE_DIR}/Common/Lib/Ext/OpenEXR/ilmbase-2.2.0/Half/half.cpp")
+    list(APPEND SOURCE_FILES ${SOURCE_FILES} "${CMAKE_CURRENT_SOURCE_DIR}/Common/Lib/Ext/OpenEXR/ilmbase-2.2.0/Half/half.cpp")
 	endif()
 	
 	set (CMP_INCLUDE_DIRS "")
@@ -40,18 +41,18 @@ project(Compressonator)
 	endif()
 
 	if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
-    list(APPEND CMP_HEADERS1 ${CMP_HEADERS1} "${CMAKE_CURRENT_SOURCE_DIR}/Common/Lib/Ext/OpenEXR/ilmbase-2.2.0/Half/half.h")
-    list(APPEND CMP_SOURCES1 ${CMP_SOURCES1} "${CMAKE_CURRENT_SOURCE_DIR}/Common/Lib/Ext/OpenEXR/ilmbase-2.2.0/Half/half.cpp")
 	endif()
+    list(APPEND CMP_HEADERS1 ${CMP_HEADERS1} "${CMAKE_CURRENT_SOURCE_DIR}/Common/Lib/Ext/OpenEXR/ilmbase-2.2.0/Half/*.h")
+    list(APPEND CMP_SOURCES1 ${CMP_SOURCES1} "${CMAKE_CURRENT_SOURCE_DIR}/Common/Lib/Ext/OpenEXR/ilmbase-2.2.0/Half/*.cpp")
 
 	##lets add specific windows build definitions
 	#if (WIN32)
-	add_compile_definitions( USE_SSE WIN64 _DEBUG _LIB HALF_NO_STD
+	add_compile_definitions(  WIN64  _LIB HALF_NO_STD
 )
 	#endif (WIN32)
 
 	#making sure to add the common cpp flags, that are defined in the main cpp file
-    set(COMPRESS_CXX_FLAGS "/std:c++14 /W4 /arch:AVX2 /fp:fast /MP")
+    set(COMPRESS_CXX_FLAGS "/std:c++14 /W4 /arch:AVX2  /MP")
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${COMPRESS_CXX_FLAGS}")
 
 
