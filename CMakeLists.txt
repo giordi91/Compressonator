@@ -87,3 +87,5 @@ project(Compressonator)
 	set_target_properties (${PROJECT_NAME} PROPERTIES
     FOLDER vendors)
 	#target_link_libraries(${PROJECT_NAME} d3dcompiler DXGI D3D12 imgui)
+
+
