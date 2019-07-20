@@ -52,7 +52,7 @@ project(Compressonator)
 	#endif (WIN32)
 
 	#making sure to add the common cpp flags, that are defined in the main cpp file
-    set(COMPRESS_CXX_FLAGS "/std:c++14 /W4 /arch:AVX2  /MP")
+    set(COMPRESS_CXX_FLAGS "/std:c++14 /W3 /arch:AVX2  /MP")
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${COMPRESS_CXX_FLAGS}")
 
 
